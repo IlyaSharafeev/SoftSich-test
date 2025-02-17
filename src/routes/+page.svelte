@@ -1,10 +1,12 @@
 <div class="page-popup">
     <div class="background-header"></div>
-    <button class="open-modal-button" on:click={() => showModal = true}>Открыть окно</button>
+    <div class="background-body"></div>
+    <button class="open-modal-button" on:click={() => showModal = true}>Відкрити вікно</button>
 
     {#if showModal}
         <div class="modal">
             <div class="overlay-store"></div>
+            <div class="overlay-store-desktop"></div>
             <div class="modal-content">
                 <div class="modal-content__header">
                     <div class="balance"></div>
@@ -20,6 +22,7 @@
                     <div class="modal-content__body-content">
                         <div class="modal-content__body-content-background-name"></div>
                         <div class="modal-content__body-content-timer-wrapper">
+                            <div class="modal-content__body-icon-timer"></div>
                             <div class="modal-content__body-content-timer">
                                 <p>{timeLeft}</p>
                             </div>
@@ -86,6 +89,9 @@
         position: fixed;
         bottom: 0;
         height: 348px;
+    }
+    .background-body {
+        display: none;
     }
     .background-header {
         background-image: url('/assets/background-header.png');
@@ -272,6 +278,9 @@
                     }
                     
                     .modal-content__body-content-timer-wrapper {
+                        display: flex;
+                        justify-content: center;
+                        gap: 13px;
                         box-shadow: 0px 2.79px 0px 0px #EFF7FD;
                         box-shadow: 0px 6.98px 6.98px 0px #B7C3CB inset;
                         border-radius: 20px;
@@ -279,6 +288,14 @@
                         width: 585px;
                         padding: 16px;
 
+                        .modal-content__body-icon-timer {
+                            background-image: url("/assets/icon-timer.svg");
+                            background-repeat: no-repeat;
+                            background-size: 45px;
+                            width: 45px;
+                            height: 45px;
+                        }
+                        
                         .modal-content__body-content-timer {
                             font-family: Fira Sans;
                             font-weight: 600;
@@ -316,7 +333,7 @@
                         justify-content: center;
                         width: 585px;
                         height: 126px;
-                        border-radius: 30px;
+                        border-radius: 13px;
                         background: linear-gradient(180deg, #28D323 1%, #16BC34 52.5%, #31F02D 100%);
                         
                         .modal-content__body-content-button-reflex {
@@ -343,20 +360,177 @@
             }
         }
     }
-    /*.close {*/
-    /*    position: absolute;*/
-    /*    top: 10px;*/
-    /*    right: 10px;*/
-    /*    border: none;*/
-    /*    background: none;*/
-    /*    font-size: 20px;*/
-    /*    cursor: pointer;*/
-    /*}*/
-    /*.buy {*/
-    /*    padding: 10px 20px;*/
-    /*    font-size: 16px;*/
-    /*    background: gray;*/
-    /*    border: none;*/
-    /*    cursor: not-allowed;*/
-    /*}*/
+
+    @media screen and (min-width: 1920px) {
+        .background-header,
+        .background-footer,
+        .overlay-store {
+            display: none;
+        }
+        
+        .background-body {
+            display: block;
+            background-image: url('/assets/background-desktop.png');
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 100vh;
+        }
+        
+        .modal {
+            .overlay-store-desktop {
+                
+            }
+            
+            .overlay-modal {
+                width: 668px;
+                height: 668px;
+            }
+            
+            .modal-content {
+                background-image: url("/assets/background-popup-desktop.png");
+                height: 675px;
+                width: 1200px;
+                
+                .modal-content__header {
+                    top: 13px;
+                    left: 12px;
+                    
+                    .balance {
+                         background-size: 169px 55px;
+                         background-repeat: no-repeat;
+                         width: 169px;
+                         height: 55px;
+                    }
+                }
+                
+                .modal-content__body {
+                    .modal-content__body-header {
+                        background-size: 280px 135px;
+                        background-repeat: no-repeat;
+                        width: 280px;
+                        height: 135px;
+                        
+                        .modal-content__safe {
+                            left: 38px;
+                            bottom: 6px;
+                            background-repeat: no-repeat;
+                            background-size: 198px;
+                            width: 198px;
+                            height: 198px;
+                        }
+
+                        .modal-content__coins {
+                            bottom: 39px;
+                            left: 10px;
+                            background-repeat: no-repeat;
+                            background-size: 255px 58px;
+                            width: 255px;
+                            height: 58px;
+                        }
+                        
+                        .modal-content__button-close {
+                            right: -50px;
+                            width: 47px;
+                            height: 47px;
+                        }
+
+                        .modal-content__stars-left {
+                            background-size: 64px;
+                            width: 64px;
+                            height: 64px;
+                            top: -68px;
+                            left: 55px;
+                        }
+
+                        .modal-content__stars-right {
+                            top: -47px;
+                            right: 44px;
+                            background-size: 64px;
+                            width: 64px;
+                            height: 64px;
+                        }
+                    }
+                    
+                    .modal-content__body-content {
+                        background-size: 281px 321px;
+                        background-repeat: no-repeat;
+                        width: 281px;
+                        height: 321px;
+
+                        .modal-content__body-content-background-name {
+                            top: -38px;
+                            right: -26px;
+                            background-size: 334px 66px;
+                            background-repeat: no-repeat;
+                            width: 334px;
+                            height: 66px;
+                        }
+                        
+                        .modal-content__body-content-description {
+                            font-family: Fira Sans;
+                            font-weight: 600;
+                            font-size: 17.5px;
+                            line-height: 21px;
+                            letter-spacing: 0%;
+                            text-align: center;
+                            height: 93px;
+                            margin-top: 20px;
+                        }
+                        
+                        .modal-content__body-content-timer-wrapper {
+                            gap: 6px;
+                            width: 244px;
+                            height: 32px;
+                            padding: 7px;
+
+                            .modal-content__body-icon-timer {
+                                background-image: url("/assets/icon-timer.svg");
+                                background-repeat: no-repeat;
+                                background-size: 18px;
+                                width: 18px;
+                                height: 18px;
+                            }
+                            
+                            .modal-content__body-content-timer {
+                                font-family: Fira Sans;
+                                font-weight: 600;
+                                font-size: 16.25px;
+                                line-height: 19.5px;
+                                letter-spacing: 0%;
+                                text-align: center;
+                            }
+                        }
+                        
+                        .modal-content__body-content-price {
+                            background-repeat: no-repeat;
+                            background-size: 124px 30px;
+                            width: 124px;
+                            height: 30px;
+                            margin-top: 17px;
+                        }
+                        
+                        .modal-content__body-content-button {
+                            width: 244px;
+                            height: 53px;
+                            
+                            .modal-content__body-content-button-reflex {
+                                width: 235px;
+                                height: 27px;
+                                margin: 4px;
+                            }
+                            
+                            .modal-content__body-content-button-text {
+                                margin: 17px 0;
+                                background-repeat: no-repeat;
+                                background-size: 37px 26px;
+                                width: 37px;
+                                height: 26px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 </style>
